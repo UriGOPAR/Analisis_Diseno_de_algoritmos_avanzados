@@ -54,7 +54,7 @@ int main() {
     // Rellenar si es necesario
     if (!fila.empty()) {
         while (fila.size() < n) {
-            fila.push_back(static_cast<char>('['));
+            fila.push_back(static_cast<char>(n));
         }
         tabla.push_back(fila);
     }
@@ -65,11 +65,13 @@ int main() {
         for (char c : fila) {
             if (c == '\n') {
                 cout << "- ";
+            } else if (c == static_cast<char>(n)) {
+                cout << "[ ";
             } else {
                 cout << c << " ";
             }
         }
-        cout << endl;
+        cout <<endl;
     }
     vector<int> a(n, 0);
     //Recorre cada columna y suma los valores de los caracteres de esa columna en filas. 
