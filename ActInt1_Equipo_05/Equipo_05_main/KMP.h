@@ -24,6 +24,22 @@
 #include <cstring>
 
 using namespace std;
+class KMP{
+    public:
+        string transmissionContent;
+        string mcodeContent;
+        // Constructor
+        KMP();
+        void computeLPSArray(char* pat, int M, int* lps);
+        void KMPSearch(char* pat, char* txt, string texto, string patron);
+        string processFiles(string txt);
+        void checkForMaliciousCode(string txt, string mcode);
+};
+
+KMP::KMP(){
+    transmissionContent = "HOLA";
+    mcodeContent = "Adios";
+}
 
 // ===========================================================================
 // Function: computeLPSArray
@@ -35,7 +51,7 @@ using namespace std;
 // Return value: void
 // Complexity: O(m)
 // ===========================================================================
-void computeLPSArray(char* pat, int M, int* lps)
+void KMP::computeLPSArray(char* pat, int M, int* lps)
 {
 	int len = 0;
 	lps[0] = 0;
@@ -72,43 +88,66 @@ void computeLPSArray(char* pat, int M, int* lps)
 // Return value: void
 // Complexity: O(n + m)
 // ===========================================================================
-void KMPSearch(char* pat, char* txt, string texto, string patron)
+void KMP::KMPSearch(char* pat, char* txt, string texto, string patron)
 {
-	int M = strlen(pat);
-	int N = strlen(txt);
+    int M = strlen(pat) ;
+    int N = strlen(txt);
 
-	int lps[M];
+    int lps[M];
 
-	computeLPSArray(pat, M, lps);
+    computeLPSArray(pat, M, lps);
 
-	int i = 0;
-	int j = 0;
+    int i = 0;
+    int j = 0;
     bool found = false;
 
-	while ((N - i) >= (M - j)) {
-		if (pat[j] == txt[i]) {
-			j++;
-			i++;
-		}
+    while ((N - i) >= (M - j)) {
+        if (pat[j] == txt[i]) {
+            j++;
+            i++;
+        }
 
-		if (j == M) {
-			cout << "True " << texto <<" contiene el codigo " << pat << " contenido en el archivo " << patron << " en la posicion: " << i - j << endl;
-			found = true;
-            j = lps[j - 1];
-		}
-		else if (i < N && pat[j] != txt[i]) {
-			if (j != 0) {
-				j = lps[j - 1];
+        if (j == M) {
+            int startPosition = i - j;
+            int endPosition = startPosition + strlen(pat) - 1;  // Cambio aquí
+            cout << "True " << texto << " contiene el codigo " << pat << " contenido en el archivo " << patron 
+                 << " desde la posicion: " << startPosition << " hasta la posicion: " << endPosition   << endl;
+            found = true;
+            i = startPosition +lps[j-1  ] + 1;
+            j = lps[j - 1];  // Reinicia 'j' a 0 para comenzar a buscar una nueva coincidencia desde el principio del patrón
+        }
+        else if (i < N && pat[j] != txt[i]) {
+            if (j != 0) {
+                j = lps[j - 1];
             }
-			else{
-				i = i + 1;
+            else{
+                i = i + 1;
             }
-		}
-	}
+        }
+    }
     
     if (!found) {
         cout << "False " << texto << " no contiene el codigo " << pat << " contenido en el archivo " << patron << endl;
     }
+}
+
+string KMP::processFiles(string txt){
+    ifstream inFile(txt);
+    string txtContent = "";
+    char ch;
+
+    if (!inFile) {
+        // cerr << "Error al abrir el archivo." << endl;
+        return txtContent;
+    }
+
+    while (inFile.get(ch)) {
+        if (ch != '\n'){
+            txtContent += ch;
+        }
+    }
+
+    return txtContent;
 }
 
 // ===========================================================================
@@ -120,25 +159,18 @@ void KMPSearch(char* pat, char* txt, string texto, string patron)
 // Return value: void
 // Complexity: O(n + m)
 // ===========================================================================
-void checkForMaliciousCode(string txt, string mcode)
+void KMP::checkForMaliciousCode(string txt, string mcode)
 {
-    string transmissionContent = "";
-    string mcodeContent = "";
-    ifstream inFile(txt);
-    ifstream inFile2(mcode);
+    // // Mover el puntero al final del archivo y obtener la posición
+    // inFile.seekg(0, ios::end);
+    // inFile.seekg(0, ios::beg);  // Mover el puntero de regreso al inicio del archivo
 
-    if (!inFile || !inFile2) {
-        cerr << "Error al abrir el archivo." << endl;
-        return;
-    }
+    transmissionContent = processFiles(txt);
+    mcodeContent = processFiles(mcode);
 
-    char ch;
-    while (inFile.get(ch)) {
-        transmissionContent += ch;
-    }
-
-    while (inFile2.get(ch)) {
-        mcodeContent += ch;
+    if (transmissionContent.empty()) {
+        cout <<mcode<< ": Archivo de transmission no valido "<< endl;
+        return;  // Retorna tempranamente si el archivo está vacío
     }
 
     char txt2[transmissionContent.length() + 1];

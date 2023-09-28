@@ -35,13 +35,37 @@ int main()
     string mcode02 = "mcode02.txt";
     string mcode03 = "mcode03.txt";
 
-    checkForMaliciousCode(transmission01, mcode01);
-    checkForMaliciousCode(transmission01, mcode02);
-    checkForMaliciousCode(transmission01, mcode03);
+    KMP KMP1 = KMP();
+    KMP KMP2 = KMP();
+    cout<<"Archivo Transmision 1"<<endl;
+    cout<<KMP1.processFiles(transmission01)<<endl;
+    cout<<"\n"<<endl;
 
-    checkForMaliciousCode(transmission02, mcode01);
-    checkForMaliciousCode(transmission02, mcode02);
-    checkForMaliciousCode(transmission02, mcode03);
+    cout<<"Archivo Transmosion 2"<<endl;
+    cout<<KMP1.processFiles(transmission02)<<endl;
+    cout<<"\n"<<endl;
+
+    cout<<"Archivo mcode1"<<endl;
+    cout<<KMP1.processFiles(mcode01)<<endl;
+
+    cout<<"Archivo mcode2"<<endl;
+    cout<<KMP1.processFiles(mcode02)<<endl;
+
+    cout<<"Archivo mcode3"<<endl;
+    cout<<KMP1.processFiles(mcode03)<<endl;
+    cout<<"\n"<<endl;
+    
+    cout<<"T R A N S M I S S I O N   1 \n"<<endl;
+    KMP1.checkForMaliciousCode(transmission01, mcode01);
+    KMP1.checkForMaliciousCode(transmission01, mcode02);
+    KMP1.checkForMaliciousCode(transmission01, mcode03);
+    cout<<"\n"<<endl;
+
+    cout<<"T R A N S M I S S I O N   2 \n"<<endl;
+    KMP2.checkForMaliciousCode(transmission02, mcode01);
+    KMP2.checkForMaliciousCode(transmission02, mcode02);
+    KMP2.checkForMaliciousCode(transmission02, mcode03);
+    cout<<"\n"<<endl;
     
 	return 0;
 }
