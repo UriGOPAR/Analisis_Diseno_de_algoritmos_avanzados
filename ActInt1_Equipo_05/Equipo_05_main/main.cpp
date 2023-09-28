@@ -34,6 +34,7 @@ int main()
     string mcode01 = "mcode01.txt";
     string mcode02 = "mcode02.txt";
     string mcode03 = "mcode03.txt";
+    vector<string> mcodes = {mcode01, mcode02, mcode03};
 
     KMP KMP1 = KMP();
     KMP KMP2 = KMP();
@@ -56,16 +57,11 @@ int main()
     cout<<"\n"<<endl;
     
     cout<<"T R A N S M I S S I O N   1 \n"<<endl;
-    KMP1.checkForMaliciousCode(transmission01, mcode01);
-    KMP1.checkForMaliciousCode(transmission01, mcode02);
-    KMP1.checkForMaliciousCode(transmission01, mcode03);
+    KMP1.checkForMaliciousCode(transmission01, mcodes);
     cout<<"\n"<<endl;
 
     cout<<"T R A N S M I S S I O N   2 \n"<<endl;
-    KMP2.checkForMaliciousCode(transmission02, mcode01);
-    KMP2.checkForMaliciousCode(transmission02, mcode02);
-    KMP2.checkForMaliciousCode(transmission02, mcode03);
-    cout<<"\n"<<endl;
+    KMP2.checkForMaliciousCode(transmission02, mcodes);
     
 	return 0;
 }

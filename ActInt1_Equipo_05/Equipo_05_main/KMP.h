@@ -22,6 +22,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 class KMP{
@@ -33,7 +34,7 @@ class KMP{
         void computeLPSArray(char* pat, int M, int* lps);
         void KMPSearch(char* pat, char* txt, string texto, string patron);
         string processFiles(string txt);
-        void checkForMaliciousCode(string txt, string mcode);
+        void checkForMaliciousCode(string txt, vector<string> mcodes);
 };
 
 KMP::KMP(){
@@ -159,26 +160,32 @@ string KMP::processFiles(string txt){
 // Return value: void
 // Complexity: O(n + m)
 // ===========================================================================
-void KMP::checkForMaliciousCode(string txt, string mcode)
+void KMP::checkForMaliciousCode(string txt, vector<string> mcodes)
 {
-    // // Mover el puntero al final del archivo y obtener la posición
-    // inFile.seekg(0, ios::end);
-    // inFile.seekg(0, ios::beg);  // Mover el puntero de regreso al inicio del archivo
-
     transmissionContent = processFiles(txt);
-    mcodeContent = processFiles(mcode);
 
     if (transmissionContent.empty()) {
-        cout <<mcode<< ": Archivo de transmission no valido "<< endl;
-        return;  // Retorna tempranamente si el archivo está vacío
+        cout << "Archivo de transmisión no válido" << endl;
+        return;
     }
 
     char txt2[transmissionContent.length() + 1];
-    char pat[mcodeContent.length() + 1];
     strcpy(txt2, transmissionContent.c_str());
-    strcpy(pat, mcodeContent.c_str());
 
-    KMPSearch(pat, txt2, txt, mcode);
+    for (const string& mcode : mcodes) {
+        mcodeContent = processFiles(mcode);
+
+        // Si mcodeContent está vacío, continúa con el siguiente mcode en el vector
+        if (mcodeContent.empty()) {
+            cout << mcode << ": Archivo mcode no encontrado" << endl;
+            continue;
+        }
+
+        char pat[mcodeContent.length() + 1];
+        strcpy(pat, mcodeContent.c_str());
+
+        KMPSearch(pat, txt2, txt, mcode);
+    }
 }
 
 #endif
