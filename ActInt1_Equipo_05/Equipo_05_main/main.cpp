@@ -16,6 +16,7 @@
 // libraries
 // ===========================================================================
 #include "KMP.h"
+#include "Substring.h"
 
 // ===========================================================================
 // Function: main
@@ -62,6 +63,10 @@ int main()
 
     cout<<"T R A N S M I S S I O N   2 \n"<<endl;
     KMP2.checkForMaliciousCode(transmission02, mcodes);
+    cout<<"\n"<<endl;
+    
+    cout<<"Sub-String mas largo: ";
+    cout << LCS(processFiles(transmission01), processFiles(transmission02));
     
 	return 0;
 }

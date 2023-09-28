@@ -38,8 +38,8 @@ class KMP{
 };
 
 KMP::KMP(){
-    transmissionContent = "HOLA";
-    mcodeContent = "Adios";
+    transmissionContent = "Maestra";
+    mcodeContent = "Pongame 10";
 }
 
 // ===========================================================================
@@ -165,7 +165,7 @@ void KMP::checkForMaliciousCode(string txt, vector<string> mcodes)
     transmissionContent = processFiles(txt);
 
     if (transmissionContent.empty()) {
-        cout << "Archivo de transmisión no válido" << endl;
+        cout << "Archivo de transmision no valido" << endl;
         return;
     }
 
