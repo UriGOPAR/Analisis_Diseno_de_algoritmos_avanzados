@@ -35,6 +35,9 @@ class KMP{
         void KMPSearch(char* pat, char* txt, string texto, string patron);
         string processFiles(string txt);
         void checkForMaliciousCode(string txt, vector<string> mcodes);
+        string findLongestPalindrome(string txt1,string txt2);
+        void findAndPrintLongestPalindrome(string txt);
+
 };
 
 KMP::KMP(){
@@ -150,7 +153,51 @@ string KMP::processFiles(string txt){
 
     return txtContent;
 }
+// Function to find the longest palindromic substring in a given string
+string KMP::findLongestPalindrome(string txt1, string txt2) {
+    int n1 = txt1.length();
+    int n2 = txt2.length();
 
+    vector<vector<bool>> dp(n1, vector<bool>(n2, false));
+
+    // All substrings of length 1 are palindromes
+    int maxLength = 1;
+    int start = 0;
+
+    // All substrings of length 1 are palindromes
+    for (int i = 0; i < n1; ++i) {
+        for (int j = 0; j < n2; ++j) {
+            if (txt1[i] == txt2[j]) {
+                dp[i][j] = true;
+                if (maxLength == 1) {
+                    maxLength = 2;
+                    start = i;
+                }
+            }
+        }
+    }
+
+    // Check for palindromes of length greater than 2
+    for (int i = 1; i < n1; ++i) {
+        for (int j = 1; j < n2; ++j) {
+            if (dp[i - 1][j - 1] && txt1[i] == txt2[j]) {
+                dp[i][j] = true;
+                int len = j - i + 1;
+                if (len > maxLength) {
+                    maxLength = len;
+                    start = i;
+                }
+            }
+        }
+    }
+
+    // Extract the longest palindrome substring from the input strings
+    if (maxLength > 1) {
+        return txt1.substr(start, maxLength);
+    } else {
+        return "No contiene un palindromo";
+    }
+} 
 // ===========================================================================
 // Function: checkForMaliciousCode
 // Description: This function reads the text and pattern files and calls

@@ -30,12 +30,15 @@
 // ===========================================================================
 int main()
 {
+    KMP kmp;
     string transmission01 = "transmission01.txt";
     string transmission02 = "transmission02.txt";
     string mcode01 = "mcode01.txt";
     string mcode02 = "mcode02.txt";
     string mcode03 = "mcode03.txt";
     vector<string> mcodes = {mcode01, mcode02, mcode03};
+    string txt1 = kmp.processFiles(transmission01);
+    string txt2 = kmp.processFiles(transmission02);
 
     KMP KMP1 = KMP();
     KMP KMP2 = KMP();
@@ -65,8 +68,22 @@ int main()
     KMP2.checkForMaliciousCode(transmission02, mcodes);
     cout<<"\n"<<endl;
     
+    cout<<"Palindromo mas largo: ";
+    cout << kmp.findLongestPalindrome(txt1, txt2) << endl;
+
+
     cout<<"Sub-String mas largo: ";
     cout << LCS(processFiles(transmission01), processFiles(transmission02));
+    cout<<"\n"<<endl;
+
+    //DEBUG
+
+    // cout << "Contenido de txt1: " << txt1 << endl;
+    // cout << "Contenido de txt2: " << txt2 << endl;
+
+    // string longestPalindrome = kmp.findLongestPalindrome(txt1, txt2);
+
+    // cout << "Palindromo mas largo: " << longestPalindrome << endl;
     
 	return 0;
 }
