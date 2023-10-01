@@ -1,0 +1,7 @@
+María Fernanda Moreno Gómez A01708653: Se especializó en el algoritmo de Manacher, haciendo el archivo Manacher.h
+Uri Jared Gopar Morales A01709413: Se especializó en el algoritmo KMP, haciendo el archivo KMP.h
+Ricardo Rosales Castañeda A01709449: Se especializó en el algoritmo LCS, haciendo el archivo Substring.h
+
+Cada uno se encargó de investigar el algoritmo, entenderlo e implementarlo, si bien habían partes en las que todo el equipo apoyó
+debido a las dificultades, las bases fueron un algoritmo por persona. Entre todos se hizo el main, se pasaron los algoritmos a clases, 
+así como el aporte de todos en la presentación y la documentación.
