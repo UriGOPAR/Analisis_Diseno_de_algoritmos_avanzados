@@ -1,6 +1,21 @@
+// ===========================================================================
+// File: Substring.h
+// Date: September 25, 2023
+// Author: María Fernanda Moreno Gómez A01708653
+//         Uri Jared Gopar Morales A01709413
+//         Ricardo Rosales Castañeda A01709449
+// Description: This program implemets LCS algorithm for the search of
+//              the longest substring in common in two given texts.
+// Complexity: The complexity of this algorithm is O(n*m), where n is the length
+//             of the first text and m is the length of the second text.
+// ===========================================================================
+
 #ifndef SUBSTRING_H
 #define SUBSTRING_H
 
+// ===========================================================================
+// libraries
+// ===========================================================================
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -10,13 +25,20 @@
 
 using namespace std;
 
+// ===========================================================================
+// Functiob: processFiles
+// Description: This function reads the content of a given file and stores it
+//              in a vector of chars.
+// Parameters: string txt: name of the file to be read.
+// Return value: vector<char> txtContent: vector with the content of the file.
+// Complexity: O(n)
+// ===========================================================================
 vector<char> processFiles(string txt){
     ifstream inFile(txt);
     vector<char> txtContent;
     char ch;
 
     if (!inFile) {
-        // cerr << "Error al abrir el archivo." << endl;
         return txtContent;
     }
 
@@ -29,11 +51,20 @@ vector<char> processFiles(string txt){
     return txtContent;
 }
 
+// ===========================================================================
+// Functiob: LCS
+// Description: This function finds the longest substring in common in two
+//              given texts.
+// Parameters: vector<char> txt1: first text.
+//             vector<char> txt2: second text.
+// Return value: string lcs: longest substring in common.
+// Complexity: O(n*m)
+// ===========================================================================
 string LCS(vector<char> txt1, vector<char> txt2){
     int m = txt1.size();
     int n = txt2.size();
     int maximum = 0;
-    int endIndex = -1;  // Final del LCS en txt1
+    int endIndex = -1;
 
     vector<vector<int>> M(m, vector<int>(n, 0));
 
@@ -53,10 +84,9 @@ string LCS(vector<char> txt1, vector<char> txt2){
     }
 
     if (maximum == 0) {
-        return "No se encontro un substring compartido en ambas transmiciones";  // No hay subcadena en común
+        return "No se encontro un substring compartido en ambas transmiciones";
     }
 
-    // Construir la subcadena en común
     string lcs(txt1.begin() + endIndex - maximum , txt1.begin() + endIndex + 1);
     return lcs;
 }

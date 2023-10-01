@@ -17,6 +17,7 @@
 // ===========================================================================
 #include "KMP.h"
 #include "Substring.h"
+#include "Manacher.h"
 
 // ===========================================================================
 // Function: main
@@ -42,48 +43,56 @@ int main()
 
     KMP KMP1 = KMP();
     KMP KMP2 = KMP();
-    cout<<"Archivo Transmision 1"<<endl;
-    cout<<KMP1.processFiles(transmission01)<<endl;
-    cout<<"\n"<<endl;
 
-    cout<<"Archivo Transmosion 2"<<endl;
-    cout<<KMP1.processFiles(transmission02)<<endl;
-    cout<<"\n"<<endl;
+    pair<int, int> res;
+    int inicio;
+    int fin;
 
-    cout<<"Archivo mcode1"<<endl;
-    cout<<KMP1.processFiles(mcode01)<<endl;
+    cout << "Archivo Transmision 1" << endl;
+    cout << KMP1.processFiles(transmission01) << endl;
+    cout << "\n" << endl;
 
-    cout<<"Archivo mcode2"<<endl;
-    cout<<KMP1.processFiles(mcode02)<<endl;
+    cout << "Archivo Transmision 2" << endl;
+    cout << KMP1.processFiles(transmission02) << endl;
+    cout << "\n" << endl;
 
-    cout<<"Archivo mcode3"<<endl;
-    cout<<KMP1.processFiles(mcode03)<<endl;
-    cout<<"\n"<<endl;
+    cout << "Archivo mcode1" << endl;
+    cout << KMP1.processFiles(mcode01) << endl;
+
+    cout << "Archivo mcode2" << endl;
+    cout << KMP1.processFiles(mcode02) << endl;
+
+    cout << "Archivo mcode3" << endl;
+    cout << KMP1.processFiles(mcode03) << endl;
+    cout << "\n" << endl;
     
-    cout<<"T R A N S M I S S I O N   1 \n"<<endl;
+    cout << "T R A N S M I S S I O N   1 \n" << endl;
     KMP1.checkForMaliciousCode(transmission01, mcodes);
-    cout<<"\n"<<endl;
+    cout << "\n" << endl;
 
-    cout<<"T R A N S M I S S I O N   2 \n"<<endl;
+    cout << "T R A N S M I S S I O N   2 \n" << endl;
     KMP2.checkForMaliciousCode(transmission02, mcodes);
-    cout<<"\n"<<endl;
+    cout << "\n" << endl;
     
-    cout<<"Palindromo mas largo: ";
-    cout << kmp.findLongestPalindrome(txt1, txt2) << endl;
+    cout << "Palindromo mas largo en transmission 1: " << endl;
+    res = Manacher(txt1);
+    inicio = res.first;
+    fin = res.second;
+    cout << "Palíndromo más largo en el archivo" << transmission01 
+         << " desde la posición: " << inicio << " hasta la posición: " << fin << endl;
+    cout << "\n" << endl;
 
+    cout << "Palindromo mas largo en transmission 2: " << endl;
+    res = Manacher(txt2);
+    inicio = res.first;
+    fin = res.second;
+    cout << "Palíndromo más largo en el archivo " << transmission02 
+         << " desde la posición: " << inicio << " hasta la posición: " << fin << endl;
+    cout << "\n" << endl;
 
-    cout<<"Sub-String mas largo: ";
+    cout << "Sub-String comun mas largo: ";
     cout << LCS(processFiles(transmission01), processFiles(transmission02));
-    cout<<"\n"<<endl;
-
-    //DEBUG
-
-    // cout << "Contenido de txt1: " << txt1 << endl;
-    // cout << "Contenido de txt2: " << txt2 << endl;
-
-    // string longestPalindrome = kmp.findLongestPalindrome(txt1, txt2);
-
-    // cout << "Palindromo mas largo: " << longestPalindrome << endl;
+    cout << "\n" << endl;
     
 	return 0;
 }
