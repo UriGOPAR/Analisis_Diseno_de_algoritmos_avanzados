@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <climits>
+#include <vector>
 using namespace std;
 
 void dijkstra(int **graph, int n, int src) {
@@ -36,21 +37,17 @@ void dijkstra(int **graph, int n, int src) {
 
     for (int i = 0; i < n; ++i) {
         if (i != src) {
-            cout << "Distancia del nodo " << src << " al nodo " << i << ": ";
-            if (dist[i] == INT_MAX)
-                cout << "Infinito" << endl;
-            else
-                cout << dist[i] << endl;
+            cout << "node " << src + 1 << " to node " << i + 1 << ": " << dist[i] << endl;
         }
     }
 }
 
 int main() {
     string nombreArchivo;
-    cout << "Por favor, ingrese el nombre del archivom sin poner .txt: ";
-    cin >> nombreArchivo ;
+    cout << "Por favor, ingrese el nombre del archivo sin poner .txt: ";
+    cin >> nombreArchivo;
 
-    ifstream inputFile(nombreArchivo +".txt");
+    ifstream inputFile(nombreArchivo + ".txt");
     if (!inputFile) {
         cout << "No se pudo abrir el archivo de entrada." << endl;
         return 1;
@@ -67,7 +64,9 @@ int main() {
         }
     }
 
-    dijkstra(graph, n, 0);
+    for (int i = 0; i < n; ++i) {
+        dijkstra(graph, n, i);
+    }
 
     for (int i = 0; i < n; ++i) {
         delete[] graph[i];
