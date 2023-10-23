@@ -1,3 +1,16 @@
+// ===============================================================================================================
+// File: main.cpp
+// Date: October 22, 2023
+// Author: María Fernanda Moreno Gómez A01708653
+//         Uri Jared Gopar Morales A01709413
+//         Ricardo Rosales Castañeda A01709449
+// Description: El programa implementa el algoritmo Dijkstra para encontrar el camino más corto de un nodo a todos
+//              los otros nodos de un grafo, representando estos caminos en una matriz de adyacencia.
+// To compile: g++ main.cpp -o app y después ./app
+// Complexity: La complejidad de todo el programa es o(N^2), debido a que existe un doble ciclo anidado, utiliza 
+//             un O(N) para buscar en el nodo visitado, la distancia mínima, para luego actualizar la distancia 
+//             de los vecinos no visitados, la cual, toma otro O(N) para revisar todas las aristas del grafo.
+// ==============================================================================================================
 #include <iostream>
 #include <fstream>
 #include <climits>
@@ -9,12 +22,16 @@ void dijkstra(int **graph, int n, int src) {
     bool visited[n];
 
     for (int i = 0; i < n; ++i) {
+        //Stores the shortest distances from the source node to each node in the graph
         dist[i] = INT_MAX;
+        //Indicates whether a node has been visited or not during the algorithm 
+        //process. Initialized to false to indicate that no nodes have been visited.
         visited[i] = false;
     }
 
     dist[src] = 0;
 
+    //Main loop that executes n-1 times, where n is the number of nodes in the graph
     for (int count = 0; count < n - 1; ++count) {
         int minDist = INT_MAX, minIndex;
         for (int v = 0; v < n; ++v) {
