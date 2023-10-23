@@ -53,8 +53,13 @@ void dijkstra(int **graph, int n, int src) {
     }
 
     for (int i = 0; i < n; ++i) {
+
         if (i != src) {
-            cout << "node " << src + 1 << " to node " << i + 1 << ": " << dist[i] << endl;
+            if (dist[i] == INT_MAX) {
+                cout << "node " << src + 1 << " to node " << i + 1 << ": -1" << endl;
+            } else {
+                cout << "node " << src + 1 << " to node " << i + 1 << ": " << dist[i] << endl;
+            }
         }
     }
 }
