@@ -10,7 +10,7 @@
 //              valor total de los objetos sin excederse del peso máximo. Se pide como entrada la cantidad de 
 //              objetos que se disponen, el valor de cada uno de ellos y sus respectivos pesos, así como la capa-
 //              cidad máxima de la mochila. La salida es una matriz, donde cada celda representa el valor máximo
-//              que puedes obtener considerando los primeros i elementos y una capacidad w de peso, así como la 
+//              que puedes obtener considerando los primeros N elementos y una capacidad W de peso, así como la 
 //              ganancia óptima después de este análisis.
 // Complexity: La complejidad de todo el programa es o(N x M), debido a que pasa por todos los valores y por todos 
 //             los pesos de los objetos para poder contruir la matriz y para imprimirla, por lo que el programa 
