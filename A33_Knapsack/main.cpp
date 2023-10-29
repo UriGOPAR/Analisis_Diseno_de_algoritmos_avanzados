@@ -26,7 +26,7 @@ int knapsack(int N, vector<int>& valores, vector<int>& pesos, int W) {
         }
         cout << endl;
     }
-
+    cout << endl;
     return dp[N][W];
 }
 
