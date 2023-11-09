@@ -1,3 +1,16 @@
+// ===============================================================================================================
+// File: main.cpp
+// Date: November 08, 2023
+// Author: María Fernanda Moreno Gómez A01708653
+//         Uri Jared Gopar Morales A01709413
+//         Ricardo Rosales Castañeda A01709449
+// Description: El programa implementa el problema del coloreo, donde dado una matriz de adyacencia de un grafo,
+//              se muetran los colores en los que se puede pintar un vértice de modo que, no se repita con los 
+//              vértices adyacentes.
+// To compile: g++ main.cpp -o app y después ./app
+// Complexity: La complejidad algorítmica es O(n^m), pues n es el número de vértices del grafo y m es el número 
+//             de colores con los que se colorea.
+// ==============================================================================================================
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -53,10 +66,13 @@ bool graphColoring(vector<vector<int>>& graph) {
 }
 
 int main() {
-    ifstream file("test1.txt"); // Asegúrate de que el archivo está en el mismo directorio que tu ejecutable, o proporciona una ruta completa.
+    string nombreArchivo;
+    cout << "Por favor, ingrese el nombre del archivo sin poner .txt: ";
+    cin >> nombreArchivo;
 
+    ifstream file(nombreArchivo + ".txt");
     if (!file) {
-        cout << "No se pudo abrir el archivo." << endl;
+        cout << "No se pudo abrir el archivo de entrada." << endl;
         return 1;
     }
 
