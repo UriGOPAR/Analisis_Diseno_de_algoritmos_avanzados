@@ -83,9 +83,9 @@ vector<int> dijkstra(vector<vector<int>>& graph, int src) {
 // Return value: void
 // Complexity: O(n^2)
 // ===========================================================================
-void printMatrix(vector<vector<int>>& matrix, int numColonies) {
-    for (int i = 0; i < numColonies; i++) {
-        for (int j = 0; j < numColonies; j++) {
+void printMatrix(vector<vector<int>>& matrix) {
+    for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix.size(); j++) {
             if (i != j) {
                 vector<int> dist = dijkstra(matrix, i);
                 cout << "Colonia " << i + 1 << " a colonia " << j + 1 << ": " << dist[j] << endl;

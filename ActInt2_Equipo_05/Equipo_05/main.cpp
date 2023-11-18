@@ -13,6 +13,7 @@
 // ===========================================================================
 #include "Dijkstra.h"
 #include "NearestNeighbor.h"
+#include "utils.h"
 
 // ===========================================================================
 // Function: main
@@ -23,32 +24,25 @@
 // ===========================================================================
 int main() {
     vector<int> dist;
+    string input = "";
 
-    // Read input
-    ifstream inputFile("Equipo_05_Entrada_1.txt");
-    if (!inputFile) {
-        cerr << "No se pudo abrir el archivo de entrada." << endl;
-        return 1;
-    }
-    int N;
-    inputFile >> N;
+    cout << "Ingrese el nombre del archivo de entrada: ";
+    cin >> input;
 
-
-    vector<vector<int>> graph(N, vector<int>(N));
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            inputFile >> graph[i][j];
-        }
-    }
+    // Read input file
+    vector<vector<int>> graph = readMatrix(input, 0);
 
     // Punto 1
     cout << "Punto 1" << endl;
-    printMatrix(graph, N);
+    printMatrix(graph);
     cout << endl << endl;
 
     // Punto 2
     cout << "Punto 2" << endl;
     printTour(graph);
+
+    // Punto 3
+    vector<vector<int>> graph2 = readMatrix(input, 1);
 
     return 0;
 }
