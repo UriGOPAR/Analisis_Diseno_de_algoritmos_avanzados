@@ -7,9 +7,22 @@
 // Description: 
 // Complexity: 
 // ===========================================================================
-#include "Prim.h"
 
+// ===========================================================================
+// libraries
+// ===========================================================================
+#include "Dijkstra.h"
+
+// ===========================================================================
+// Function: main
+// Description:
+// Parameters:
+// Return value: int
+// Complexity:
+// ===========================================================================
 int main() {
+    vector<int> dist;
+
     // Read input
     ifstream inputFile("Equipo_05_Entrada_1.txt");
     if (!inputFile) {
@@ -27,12 +40,10 @@ int main() {
         }
     }
 
-    // Colony cable network
-    vector<Edge> MST = primMST(graph);
-    cout << "Forma de cablear las colonias (Aristas del MST):" << endl;
-    for (const Edge& edge : MST) {
-        cout << "Colonia " << edge.from << " a Colonia " << edge.to << " con distancia " << edge.distance << " km." << endl;
-    }
+    // Punto 1
+    cout << "Punto 1" << endl;
+    printMatrix(graph, N);
+
 
     return 0;
 }
