@@ -12,6 +12,7 @@
 // libraries
 // ===========================================================================
 #include "Dijkstra.h"
+#include "NearestNeighbor.h"
 
 // ===========================================================================
 // Function: main
@@ -32,7 +33,7 @@ int main() {
     int N;
     inputFile >> N;
 
-    // Read graph
+
     vector<vector<int>> graph(N, vector<int>(N));
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
@@ -43,7 +44,11 @@ int main() {
     // Punto 1
     cout << "Punto 1" << endl;
     printMatrix(graph, N);
+    cout << endl << endl;
 
+    // Punto 2
+    cout << "Punto 2" << endl;
+    printTour(graph);
 
     return 0;
 }
