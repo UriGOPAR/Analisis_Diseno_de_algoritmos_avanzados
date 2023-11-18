@@ -20,6 +20,27 @@
 using namespace std;
 
 // ===========================================================================
+// Function: getNumColonies
+// Description: This function returns the number of colonies in the graph.
+// Parameters: string input: input file.
+// Return value: int numColonies: number of colonies in the graph.
+// Complexity: O(1)
+// ===========================================================================
+int getNumColonies(string input) {
+    ifstream inputFile(input);
+    int n;
+
+    if (!inputFile) {
+        cerr << "No se pudo abrir el archivo de entrada." << endl;
+        return 0;
+    }
+
+    inputFile >> n;
+
+    return n;
+}
+
+// ===========================================================================
 // Function: readMatrix
 // Description: This function reads the adjacency matrix of the graph.
 // Parameters: string input: input file.
