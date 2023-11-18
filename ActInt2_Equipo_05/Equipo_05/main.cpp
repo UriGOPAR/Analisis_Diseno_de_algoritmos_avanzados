@@ -46,11 +46,15 @@ int main() {
     printTour(graph);
     cout << endl << endl;
 
-    vector<vector<int>> graph2 = readMatrix(input, 1);
     // Punto 3
+    vector<vector<int>> graph2 = readMatrix(input, 1);
     cout << "Punto 3" << endl;
     printMaxFlow(graph2, 0, numColonies - 1);
     cout << endl << endl;
+
+    // Punto 4
+    vector<pair<int, int>> coordinates = readCoordinates(input);
+    cout << "Punto 4" << endl;
 
     return 0;
 }
