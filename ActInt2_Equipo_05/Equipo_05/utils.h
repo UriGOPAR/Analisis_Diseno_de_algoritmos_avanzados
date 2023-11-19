@@ -112,11 +112,6 @@ vector<pair<int, int>> readCoordinates(string input) {
         coordinates[i] = make_pair(x, y);
     }
 
-    // cout << "Coordenadas:" << endl;
-    // for (int i = 0; i < N + 1; i++) {
-    //     cout << coordinates[i].first << " " << coordinates[i].second << endl;
-    // }
-
     return coordinates;
 }
 

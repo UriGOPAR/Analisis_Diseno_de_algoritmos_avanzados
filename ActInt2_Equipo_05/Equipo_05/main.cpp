@@ -4,8 +4,10 @@
 // Author: María Fernanda Moreno Gómez A01708653
 //         Uri Jared Gopar Morales A01709413
 //         Ricardo Rosales Castañeda A01709449
-// Description: 
-// Complexity: 
+// Description: this file contains the main function.
+// Complexity: O(n^2)
+// How to compile: g++ main.cpp -o app
+// How to run: ./app <inputFile.txt>
 // ===========================================================================
 
 // ===========================================================================
@@ -14,22 +16,26 @@
 #include "Dijkstra.h"
 #include "NearestNeighbor.h"
 #include "FordFulkerson.h"
+#include "EculideanDistance.h"
 #include "utils.h"
 
 // ===========================================================================
 // Function: main
-// Description:
-// Parameters:
+// Description: this function is the entry point of the program.
+// Parameters: int argc: number of arguments.
+//             char* argv[]: array of arguments.
 // Return value: int
-// Complexity:
+// Complexity: O(n^2)
 // ===========================================================================
-int main() {
+int main(int argc, char* argv[]) {
     vector<int> dist;
-    string input = "";
 
-    cout << "Ingrese el nombre del archivo de entrada: ";
-    cin >> input;
-    cout << endl << endl;
+    if (argc != 2) {
+        cerr << "Forma de uso: ./app <inputFile.txt>" << endl;
+        return 0;
+    }
+
+    string input = argv[1];
 
     // Read input file
     vector<vector<int>> graph = readMatrix(input, 0);
@@ -55,6 +61,8 @@ int main() {
     // Punto 4
     vector<pair<int, int>> coordinates = readCoordinates(input);
     cout << "Punto 4" << endl;
+    pair<int, int> newCentral = coordinates[coordinates.size()];
+    printClosest(coordinates, newCentral.first, newCentral.second);
 
     return 0;
 }
