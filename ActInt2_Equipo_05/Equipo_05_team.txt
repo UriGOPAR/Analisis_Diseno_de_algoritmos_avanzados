@@ -1,0 +1,8 @@
+María Fernanda Moreno Gómez A01708653: Se especializó en el algoritmo de Ford-Fulkerson, haciendo el archivo FordFulkerson.h
+Uri Jared Gopar Morales A01709413: Se especializó en el algoritmo Nearest Neighbor, haciendo el archivo NearestNeighbor.h
+Ricardo Rosales Castañeda A01709449: Se especializó en el algoritmo Dijkstra, haciendo el archivo Dijkstra.h
+
+Cada uno se encargó de investigar el algoritmo, entenderlo e implementarlo, si bien habían partes en las que todo el equipo apoyó
+debido a las dificultades, las bases fueron un algoritmo por persona. Entre todos se hizo el main, se pasaron los algoritmos a clases, 
+así como el aporte de todos en la presentación y la documentación. También, el de Distancia Euclidiana en realidad fue aporte de todos,
+ya que, no lo vimos demasiado difícil de implemenetar, por lo que ese lo hicimos entre todos mayormente.
